@@ -19,14 +19,15 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<PageResponse<CourseResponse>>> getCourses(
+    public ResponseEntity<ApiResponse<PageResponse<CourseResponseV2>>> getCourses(
             @RequestParam(defaultValue ="0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(required = false) String sortBy,
-            @RequestParam(defaultValue = "DESC") Sort.Direction direction,
-            @RequestParam(defaultValue = "ACTIVE") CourseStatus status){
-        PageResponse<CourseResponse> result =
-                courseService.getPagedCoursesByStatus(page,size,sortBy,direction, status);
+            @RequestParam(required = false) Sort.Direction direction,
+            @RequestParam(required = false) CourseStatus status,
+            @RequestParam(required = false) String keyword) {
+        PageResponse<CourseResponseV2> result =
+                courseService.getPagedCourses(page,size,sortBy,direction, status, keyword);
         return ResponseEntity.ok(new ApiResponse<>(true, "OK", result));
     }
 }

@@ -15,7 +15,7 @@ public class PageResponse<T> {
     private List<T> items;  // Ds dữ liệu trang hiện tại
     private int page;       // Số trang hiện tại
     private int size;       // Số phtu tối đa trong 1 trang
-    private int totalItems; // tổng số bản ghi
+    private long totalItems; // tổng số bản ghi
     private int totalPages; //tổng số trang
     private boolean isLast;
 }
